@@ -1,0 +1,7 @@
+# dependencies folder/
+
+node_modules/
+
+# npm
+
+package-lock.json
