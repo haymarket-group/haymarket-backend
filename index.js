@@ -1,11 +1,22 @@
-import express from 'express';
+import http from "http";
 
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send("Hello World");
+const server = http.createServer((req, res) => {
+	const urlPath = req.url;
+	if (urlPath === "/overview") {
+		res.end('Welcome to the "overview page" of the nginX project');
+	} else if (urlPath === "/api") {
+		res.writeHead(200, { "Content-Type": "application/json" });
+		res.send(
+			JSON.stringify({
+				product_id: "xyz12u3",
+				product_name: "NginX injector",
+			})
+		);
+	} else {
+		res.end("Successfully started a server");
+	}	
 });
 
-app.listen(4000, () => {
-    console.log("connected")
+server.listen(3000, "localhost", () => {
+	console.log("Listening for request");
 });
